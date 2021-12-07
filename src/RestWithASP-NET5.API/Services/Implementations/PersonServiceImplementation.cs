@@ -48,7 +48,7 @@ namespace RestWithASP_NET5.API.Services.Implementations
 
         public void Delete(long id)
         {
-            throw new NotImplementedException();
+            
         }
 
         private Person MockPerson(int i)

@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using RestWithASP_NET5.API.Services;
+using RestWithASP_NET5.API.Services.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,9 @@ namespace RestWithASP_NET5.API
         {
 
             services.AddControllers();
+
+            services.AddScoped<IPersonService, PersonServiceImplementation>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestWithASP_NET5.API", Version = "v1" });
