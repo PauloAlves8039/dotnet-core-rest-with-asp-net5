@@ -1,9 +1,9 @@
 ﻿using RestWithASP_NET5.API.Model;
 using System.Collections.Generic;
 
-namespace RestWithASP_NET5.API.Services
+namespace RestWithASP_NET5.API.Business
 {
-    public interface IPersonService
+    public interface IPersonBusiness
     {
         Person Create(Person person);
         Person FindById(long id);
