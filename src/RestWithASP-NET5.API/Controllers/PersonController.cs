@@ -2,15 +2,12 @@
 using Microsoft.Extensions.Logging;
 using RestWithASP_NET5.API.Model;
 using RestWithASP_NET5.API.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RestWithASP_NET5.API.Controllers
 {
+    [ApiVersion("1")]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/v{version:apiVersion}")]
     public class PersonController : ControllerBase
     {
         private readonly ILogger<PersonController> _logger;
