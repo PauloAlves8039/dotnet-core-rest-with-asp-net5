@@ -15,6 +15,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RestWithASP_NET5.API.Repository;
+using RestWithASP_NET5.API.Repository.Implementations;
 
 namespace RestWithASP_NET5.API
 {
@@ -37,7 +39,9 @@ namespace RestWithASP_NET5.API
 
             services.AddApiVersioning();
 
-            services.AddScoped<IPersonService, PersonServiceImplementation>();
+            services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
+
+            services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
 
             services.AddSwaggerGen(c =>
             {
