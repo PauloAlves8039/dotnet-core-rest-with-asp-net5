@@ -53,6 +53,10 @@ namespace RestWithASP_NET5.API
 
             services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
 
+            services.AddScoped<IBookBusiness, BookBusinessImplementation>();
+
+            services.AddScoped<IBookRepository, BookRepositoryImplementation>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestWithASP_NET5.API", Version = "v1" });
