@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using RestWithASP_NET5.API.Repository;
 using RestWithASP_NET5.API.Repository.Implementations;
 using Serilog;
+using RestWithASP_NET5.API.Repository.Generic;
 
 namespace RestWithASP_NET5.API
 {
@@ -55,7 +56,7 @@ namespace RestWithASP_NET5.API
 
             services.AddScoped<IBookBusiness, BookBusinessImplementation>();
 
-            services.AddScoped<IBookRepository, BookRepositoryImplementation>();
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
             services.AddSwaggerGen(c =>
             {

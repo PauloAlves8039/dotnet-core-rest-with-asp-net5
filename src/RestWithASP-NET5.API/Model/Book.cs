@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestWithASP_NET5.API.Model
 {
-    [Table("person")]
+    [Table("books")]
     public class Book : BaseEntity
     {
         [Column("title")]
