@@ -1,5 +1,4 @@
 ﻿using RestWithASP_NET5.API.Model;
-using RestWithASP_NET5.API.Repository;
 using RestWithASP_NET5.API.Repository.Generic;
 using System.Collections.Generic;
 

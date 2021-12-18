@@ -1,22 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RestWithASP_NET5.API.Model.Context;
 using RestWithASP_NET5.API.Business;
 using RestWithASP_NET5.API.Business.Implementations;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using RestWithASP_NET5.API.Repository;
-using RestWithASP_NET5.API.Repository.Implementations;
 using Serilog;
 using RestWithASP_NET5.API.Repository.Generic;
 
@@ -51,8 +44,6 @@ namespace RestWithASP_NET5.API
             services.AddApiVersioning();
 
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
-
-            services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
 
             services.AddScoped<IBookBusiness, BookBusinessImplementation>();
 
