@@ -12,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using Serilog;
 using RestWithASP_NET5.API.Repository.Generic;
+using RestWithASP_NET5.API.Hypermedia.Filters;
+using RestWithASP_NET5.API.Hypermedia.Enricher;
 
 namespace RestWithASP_NET5.API
 {
@@ -40,6 +42,12 @@ namespace RestWithASP_NET5.API
             {
                 MigrateDatabase(connection);
             }
+
+            var filterOptions = new HyperMediaFilterOptions();
+            filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());
+            filterOptions.ContentResponseEnricherList.Add(new BookEnricher());
+
+            services.AddSingleton(filterOptions);
 
             services.AddApiVersioning();
 
@@ -73,6 +81,7 @@ namespace RestWithASP_NET5.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapControllerRoute("DefaultApi", "{controller=values}/{id?}");
             });
         }
 
