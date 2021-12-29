@@ -14,6 +14,7 @@ using Serilog;
 using RestWithASP_NET5.API.Repository.Generic;
 using RestWithASP_NET5.API.Hypermedia.Filters;
 using RestWithASP_NET5.API.Hypermedia.Enricher;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace RestWithASP_NET5.API
 {
@@ -57,9 +58,19 @@ namespace RestWithASP_NET5.API
 
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestWithASP_NET5.API", Version = "v1" });
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1",
+                    new OpenApiInfo
+                    {
+                        Title = "REST API's From 0 to Azure with ASP.NET Core 5 and Docker",
+                        Version = "v1",
+                        Description = "API RESTful developed in course 'REST API's From 0 to Azure with ASP.NET Core 5 and Docker'",
+                        Contact = new OpenApiContact
+                        {
+                            Name = "Paulo Alves",
+                            Url = new Uri("https://github.com/PauloAlves8039")
+                        }
+                    });
             });
         }
 
@@ -68,13 +79,20 @@ namespace RestWithASP_NET5.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RestWithASP_NET5.API v1"));
+                
             }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RestWithASP_NET5.API v1"));
+
+            var option = new RewriteOptions();
+            option.AddRedirect("^$", "swagger");
+            app.UseRewriter(option);
 
             app.UseAuthorization();
 
