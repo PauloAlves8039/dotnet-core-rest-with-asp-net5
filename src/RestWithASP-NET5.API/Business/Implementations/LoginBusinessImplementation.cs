@@ -5,9 +5,7 @@ using RestWithASP_NET5.API.Services;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace RestWithASP_NET5.API.Business.Implementations
 {
@@ -41,6 +39,40 @@ namespace RestWithASP_NET5.API.Business.Implementations
 
             user.RefreshToken = refreshToken;
             user.RefreshTokenExpiryTime = DateTime.Now.AddDays(_configuration.DaysToExpiry);
+
+            _repository.RefreshUserInfo(user);
+
+            DateTime createDate = DateTime.Now;
+            DateTime expirationDate = createDate.AddMinutes(_configuration.Minutes);
+
+            return new TokenVO(
+                true,
+                createDate.ToString(DATE_FORMAT),
+                expirationDate.ToString(DATE_FORMAT),
+                accessToken,
+                refreshToken
+                );
+        }
+
+        public TokenVO ValidateCredentials(TokenVO token)
+        {
+            var accessToken = token.AccessToken;
+            var refreshToken = token.RefreshToken;
+
+            var principal = _tokenService.GetPrincipalFromExpiredToken(accessToken);
+
+            var username = principal.Identity.Name;
+
+            var user = _repository.ValidateCredentials(username);
+
+            if (user == null ||
+                user.RefreshToken != refreshToken ||
+                user.RefreshTokenExpiryTime <= DateTime.Now) return null;
+
+            accessToken = _tokenService.GenerateAccessToken(principal.Claims);
+            refreshToken = _tokenService.GenerateRefreshToken();
+
+            user.RefreshToken = refreshToken;
 
             _repository.RefreshUserInfo(user);
 
