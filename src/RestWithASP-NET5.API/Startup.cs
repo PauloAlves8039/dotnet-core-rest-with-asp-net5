@@ -15,6 +15,11 @@ using RestWithASP_NET5.API.Repository.Generic;
 using RestWithASP_NET5.API.Hypermedia.Filters;
 using RestWithASP_NET5.API.Hypermedia.Enricher;
 using Microsoft.AspNetCore.Rewrite;
+using RestWithASP_NET5.API.Services;
+using RestWithASP_NET5.API.Services.Implementations;
+using RestWithASP_NET5.API.Repository;
+using RestWithASP_NET5.API.Configurations;
+using Microsoft.Extensions.Options;
 
 namespace RestWithASP_NET5.API
 {
@@ -33,6 +38,14 @@ namespace RestWithASP_NET5.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var tokenConfigurations = new TokenConfiguration();
+
+            new ConfigureFromConfigurationOptions<TokenConfiguration>(
+                    Configuration.GetSection("TokenConfigurations")
+                )
+                .Configure(tokenConfigurations);
+
+            services.AddSingleton(tokenConfigurations);
 
             services.AddCors(options => options.AddDefaultPolicy(builder => 
             {
@@ -62,6 +75,12 @@ namespace RestWithASP_NET5.API
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
 
             services.AddScoped<IBookBusiness, BookBusinessImplementation>();
+
+            services.AddScoped<ILoginBusiness, LoginBusinessImplementation>();
+
+            services.AddTransient<ITokenService, TokenService>();
+
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
