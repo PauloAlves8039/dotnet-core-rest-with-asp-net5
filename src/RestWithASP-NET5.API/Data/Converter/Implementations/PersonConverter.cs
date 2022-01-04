@@ -1,10 +1,8 @@
 ﻿using RestWithASP_NET5.API.Data.Converter.Contract;
 using RestWithASP_NET5.API.Data.VO;
 using RestWithASP_NET5.API.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace RestWithASP_NET5.API.Data.Converter.Implementations
 {
@@ -19,7 +17,8 @@ namespace RestWithASP_NET5.API.Data.Converter.Implementations
                 FirstName = origin.FirstName,
                 LastName = origin.LastName,
                 Address = origin.Address,
-                Gender = origin.Gender
+                Gender = origin.Gender,
+                Enabled = origin.Enabled
             };
         }
 
@@ -32,7 +31,8 @@ namespace RestWithASP_NET5.API.Data.Converter.Implementations
                 FirstName = origin.FirstName,
                 LastName = origin.LastName,
                 Address = origin.Address,
-                Gender = origin.Gender
+                Gender = origin.Gender,
+                Enabled = origin.Enabled
             };
         }
 

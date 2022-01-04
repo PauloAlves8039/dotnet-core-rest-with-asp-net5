@@ -1,17 +1,16 @@
 ﻿using RestWithASP_NET5.API.Data.Converter.Implementations;
 using RestWithASP_NET5.API.Data.VO;
-using RestWithASP_NET5.API.Model;
-using RestWithASP_NET5.API.Repository.Generic;
+using RestWithASP_NET5.API.Repository;
 using System.Collections.Generic;
 
 namespace RestWithASP_NET5.API.Business.Implementations
 {
     public class PersonBusinessImplementation : IPersonBusiness
     {
-        private readonly IRepository<Person> _repository;
+        private readonly IPersonRepository _repository;
         private readonly PersonConverter _converter;
 
-        public PersonBusinessImplementation(IRepository<Person> repository)
+        public PersonBusinessImplementation(IPersonRepository repository)
         {
             _repository = repository;
             _converter = new PersonConverter();
@@ -38,6 +37,12 @@ namespace RestWithASP_NET5.API.Business.Implementations
         {
             var personEntity = _converter.Parse(person);
             personEntity = _repository.Update(personEntity);
+            return _converter.Parse(personEntity);
+        }
+
+        public PersonVO Disable(long id)
+        {
+            var personEntity = _repository.Disable(id);
             return _converter.Parse(personEntity);
         }
 
