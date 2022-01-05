@@ -2,6 +2,7 @@
 using RestWithASP_NET5.API.Model.Context;
 using RestWithASP_NET5.API.Repository.Generic;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RestWithASP_NET5.API.Repository
@@ -28,6 +29,27 @@ namespace RestWithASP_NET5.API.Repository
                 }
             }
             return user;
+        }
+
+        public List<Person> FindByName(string firstName, string lastName)
+        {
+            if (!string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(lastName))
+            {
+                return _context.Persons.Where(
+                    p => p.FirstName.Contains(firstName)
+                    && p.LastName.Contains(lastName)).ToList();
+            }
+            else if (string.IsNullOrWhiteSpace(firstName) && !string.IsNullOrWhiteSpace(lastName))
+            {
+                return _context.Persons.Where(
+                    p => p.LastName.Contains(lastName)).ToList();
+            }
+            else if (!string.IsNullOrWhiteSpace(firstName) && string.IsNullOrWhiteSpace(lastName))
+            {
+                return _context.Persons.Where(
+                    p => p.FirstName.Contains(firstName)).ToList();
+            }
+            return null;
         }
     }
 }
