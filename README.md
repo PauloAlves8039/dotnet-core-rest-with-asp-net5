@@ -2,7 +2,7 @@
 
 ## :computer: Projeto
 
-Repositório de uma API para utilização de exemplos do ASP.NET Core 5, código fonte foi baseado no curso 
+Repositório de uma API para gerenciamneto de informações utilizando o ASP.NET Core 5, código fonte foi baseado no curso 
 [REST API's RESTFul do 0 à Azure com ASP.NET Core 5 e Docker](https://www.udemy.com/course/restful-apis-do-0-a-nuvem-com-aspnet-core-e-docker/).
 
 ## :wrench: Recursos Utilizados
@@ -12,6 +12,10 @@ Repositório de uma API para utilização de exemplos do ASP.NET Core 5, código
 - [C#](https://docs.microsoft.com/pt-br/dotnet/csharp/getting-started/)
 - [MySQL v8.0](https://www.mysql.com/)
 - [Envolve v2.4.0](https://www.nuget.org/packages/Evolve/2.4.0)
+- [Serilog v3.4.0](https://jwt.io/)
+- [JWT v3.1.8](https://jwt.io/)
+- [Swagger v5.6.3](https://swagger.io/)
+
 
 ## :floppy_disk: Clonar Repositório
 
