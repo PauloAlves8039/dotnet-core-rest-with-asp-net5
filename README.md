@@ -15,6 +15,12 @@ Repositório de uma API para gerenciamneto de informações utilizando o ASP.NET
 - [Serilog v3.4.0](https://jwt.io/)
 - [JWT v3.1.8](https://jwt.io/)
 - [Swagger v5.6.3](https://swagger.io/)
+- [Docker v20.10.11](https://www.docker.com/)
+- [Docker Compose v2.2.1](https://docs.docker.com/compose/)
+
+## :camera: Screenshot
+
+![screenshot](https://github.com/PauloAlves8039/dotnet-core-rest-with-asp-net5/blob/master/src/RestWithASP-NET5.API/wwwroot/imagens/screenshot1.png)
 
 
 ## :floppy_disk: Clonar Repositório
